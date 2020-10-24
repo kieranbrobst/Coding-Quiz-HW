@@ -6,9 +6,10 @@ timerEl.textContent = "Time: " + timerCount;
 var option1Div = document.querySelector("#option1");
 var option2Div = document.querySelector("#option2");
 var option3Div = document.querySelector("#option3");
-var answerDiv = document.querySelector("#answer");
-var answerP = document.createElement("p");
-answerDiv.appendChild(answerP);
+
+// var answerDiv = document.querySelector("#answer");
+// var answerP = document.createElement("p");
+// answerDiv.appendChild(answerP);
 
 // Score //
 var score = localStorage.getItem("score");
