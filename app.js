@@ -28,13 +28,25 @@ option1Div.appendChild(startBtn);
 // Quiz Questions //
 var questions = [
     {
-        q: "what is your name?", 
-        choices: ["Kieran", "Kiki", "Karen"], 
+        q: "Inside which HTML element do we put the JavaScript?", 
+        choices: ["<js>", "<script>", "<javascript>"], 
+        a: "B"},
+    {
+        q: "Where is the correct place to insert a JavaScript?", 
+        choices: ["The <head> section", "The <body> section", "Both the <head> and the <body>"], 
+        a: "B"},
+    {
+        q: "The external JavaScript file must contain the <script> tag.", 
+        choices: ["False", "True", "Neither"], 
         a: "A"},
     {
-        q: "where is home?", 
-        choices: ["San Francisco", "Oakland", "Los Angeles"], 
-        a: "A"},
+        q: "How do you create a function in JavaScript?", 
+        choices: ["function:myFunction()", "Function=myfunction()", "function myFunction()"], 
+        a: "C"},
+    {
+        q: "Which below doesn't belong?", 
+        choices: ["Programming", "Booleans", "My Sanity"], 
+        a: "C"},
 ];
 
 var questionsPointer = 0;
