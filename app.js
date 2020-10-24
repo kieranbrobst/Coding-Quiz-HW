@@ -1,18 +1,31 @@
-// Variables //
+// Main Variables //
 var quiz = document.querySelector("#quiz");
 var timerCount = 100;
 var timerEl = document.querySelector("#timer");
 timerEl.textContent = "Time: " + timerCount;
+var option1Div = document.querySelector("#option1");
+var option2Div = document.querySelector("#option2");
+var option3Div = document.querySelector("#option3");
+var answerDiv = document.querySelector("#answer");
+var answerP = document.createElement("p");
+answerDiv.appendChild(answerP);
 
+// Score //
+var score = localStorage.getItem("score");
+
+
+// Question and Start Prompt //
 var questionPrompt = document.createElement("h1");
 questionPrompt.textContent = "Coding Quiz Challenge";
 quiz.appendChild(questionPrompt);
 
+// Start Button //
 var startBtn = document.createElement("button");
 startBtn.setAttribute("class", "btn btn-info");
 startBtn.textContent = "Start";
-quiz.appendChild(startBtn);
+option1Div.appendChild(startBtn);
 
+// Quiz Questions //
 var questions = [
     {
         q: "what is your name?", 
@@ -25,6 +38,8 @@ var questions = [
 ];
 
 var questionsPointer = 0;
+
+// Quiz Option Buttons //
 var optionA = document.createElement("button");
 optionA.setAttribute("class", "btn btn-info");
 optionA.setAttribute("data-answer", "A");
@@ -35,15 +50,31 @@ var optionC = document.createElement("button");
 optionC.setAttribute("class", "btn btn-info");
 optionC.setAttribute("data-answer", "C");
 
+// Clear & Start Over Buttons //
+var clearBtn = document.createElement("button");
+clearBtn.setAttribute("class", "btn btn-light");
+var startOver = document.createElement("button");
+clearBtn.setAttribute("class", "btn btn-danger");
+
+
+// Function for finishing the quiz or running out of time //
+function quizOver() {
+    questionPrompt.textContent = "All done with " + timerCount + " seconds left. Your score = " + score + ".";
+    optionA.style.display = "none";
+    optionB.style.display = "none";
+    optionC.style.display = "none";
+    clearInterval(timer);
+}
+
 // Function that sets up the quiz questions // 
 function setQuestions() {
-    quiz.appendChild(optionA);
-    quiz.appendChild(optionB);
-    quiz.appendChild(optionC);
+    option1Div.appendChild(optionA);
+    option2Div.appendChild(optionB);
+    option3Div.appendChild(optionC);
 
-    if (questionsPointer === questions.length){
+    if (questionsPointer === questions.length || timerCount === 0){
         clearInterval(timer);
-        alert("You are done with " + timerCount + " seconds left");
+        quizOver();
         return;
     }
     questionPrompt.textContent = questions[questionsPointer].q
@@ -66,32 +97,44 @@ startBtn.addEventListener("click", function () {
     }
 );
 
-// Button or Answer Functions // 
+// Button or Answer Event Listeners // 
 optionA.addEventListener("click", function() {
     if (optionA.getAttribute("data-answer") === questions[questionsPointer].a) {
     console.log("this is correct");
     questionsPointer++;
+    score++;
+    localStorage.setItem("score", score);
     setQuestions()
 } else { 
     console.log("this is wrong");
     timerCount -=10;
+    score--;
+    localStorage.setItem("score", score);
 }});
 optionB.addEventListener("click", function() {
     if (optionB.getAttribute("data-answer") === questions[questionsPointer].a) {
     console.log("this is correct");
     questionsPointer++;
+    score++;
+    localStorage.setItem("score", score);
     setQuestions()
 } else { 
     console.log("this is wrong");
     timerCount -=10;
+    score--;
+    localStorage.setItem("score", score);
 }});
 optionC.addEventListener("click", function() {
     if (optionC.getAttribute("data-answer") === questions[questionsPointer].a) {
     console.log("this is correct");
     questionsPointer++;
+    score++;
+    localStorage.setItem("score", score);
     setQuestions()
 } else { 
     console.log("this is wrong");
     timerCount -=10;
+    score--;
+    localStorage.setItem("score", score);
 }});
 
